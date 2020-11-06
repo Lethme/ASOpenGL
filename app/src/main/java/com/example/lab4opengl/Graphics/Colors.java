@@ -1,4 +1,4 @@
-package com.example.lab4opengl;
+package com.example.lab4opengl.Graphics;
 
 public class Colors {
     public static FloatColor DarkBrown = FloatColor.Create(0.2f, 0.15f, 0.12f, 1.0f);

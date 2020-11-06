@@ -1,4 +1,6 @@
-package com.example.lab4opengl;
+package com.example.lab4opengl.Graphics;
+
+import android.graphics.Color;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -9,8 +11,28 @@ import javax.microedition.khronos.opengles.GL10;
 public class Graphics {
     private static GL10 GL;
     private static FloatBuffer vertexBuffer;
+    private static FloatColor backgroundColor = Colors.Black;
     public static void createGraphics(GL10 gl) {
         GL = gl;
+        setBackgroundColor();
+    }
+    public static void setBackgroundColor(FloatColor color) { backgroundColor = color; setBackgroundColor(); }
+    private static void setBackgroundColor() {
+        GL.glClearColor(
+                backgroundColor.getR(),
+                backgroundColor.getG(),
+                backgroundColor.getB(),
+                backgroundColor.getA()
+        );
+    }
+    public static void Clear() {
+        GL.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
+    }
+    public static void LoadIdentity() {
+        GL.glLoadIdentity();
+    }
+    public static void SetViewport(int width, int height) {
+        GL.glViewport(0, 0, width, height);
     }
     public static void drawTriangle(Triangle triangle) {
         float[] points = new float[] {

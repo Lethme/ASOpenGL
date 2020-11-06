@@ -1,4 +1,4 @@
-package com.example.lab4opengl;
+package com.example.lab4opengl.Graphics;
 
 public class Rectangle {
     private FloatPoint[] points;
