@@ -9,9 +9,9 @@ public class Triangle {
     }
     public Triangle(float x1, float y1, float x2, float y2, float x3, float y3, FloatColor color) {
         this.points = new FloatPoint[]{
-                new FloatPoint(x1, y1),
-                new FloatPoint(x2, y2),
-                new FloatPoint(x3, y3)
+                FloatPoint.Create(x1, y1),
+                FloatPoint.Create(x2, y2),
+                FloatPoint.Create(x3, y3)
         };
         this.color = color;
     }

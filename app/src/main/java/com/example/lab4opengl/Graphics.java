@@ -13,7 +13,7 @@ public class Graphics {
         GL = gl;
     }
     public static void drawTriangle(Triangle triangle) {
-        float points[] = new float[] {
+        float[] points = new float[] {
                 triangle.getPoint(0).getX(), triangle.getPoint(0).getY(),
                 triangle.getPoint(1).getX(), triangle.getPoint(1).getY(),
                 triangle.getPoint(2).getX(), triangle.getPoint(2).getY()
@@ -28,5 +28,19 @@ public class Graphics {
         GL.glVertexPointer(2, GL10.GL_FLOAT, 0, vertexBuffer);
         GL.glColor4f(triangle.getColor().getR(), triangle.getColor().getG(), triangle.getColor().getB(), triangle.getColor().getA());
         GL.glDrawArrays(GL10.GL_TRIANGLE_STRIP, 0, 3);
+    }
+    public static void drawRectangle(Rectangle rectangle) {
+        drawTriangle(Triangle.Create(
+                rectangle.getPoint(0).getX(), rectangle.getPoint(0).getY(),
+                rectangle.getPoint(1).getX(), rectangle.getPoint(1).getY(),
+                rectangle.getPoint(2).getX(), rectangle.getPoint(2).getY(),
+                rectangle.getColor()
+        ));
+        drawTriangle(Triangle.Create(
+                rectangle.getPoint(0).getX(), rectangle.getPoint(0).getY(),
+                rectangle.getPoint(3).getX(), rectangle.getPoint(3).getY(),
+                rectangle.getPoint(2).getX(), rectangle.getPoint(2).getY(),
+                rectangle.getColor()
+        ));
     }
 }

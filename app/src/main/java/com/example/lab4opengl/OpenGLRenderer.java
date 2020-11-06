@@ -10,6 +10,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class OpenGLRenderer implements GLSurfaceView.Renderer {
     private Triangle[] triangles;
+    private Rectangle[] rectangles;
 
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig eglConfig) {
@@ -76,6 +77,17 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer {
                 Triangle.Create(0.22f, 0.44f, 0.25f, 0.4f, 0.18f, 0.4f, Colors.Black),
                 /* Black triangles */
         };
+        rectangles = new Rectangle[] {
+                /* White rectangles */
+                Rectangle.Create(-0.25f, 0.4f, -0.05f, 0.4f, -0.05f, 0.5f, -0.25f, 0.5f, Colors.White),
+                Rectangle.Create(0.25f, 0.4f, 0.05f, 0.4f, 0.05f, 0.5f, 0.25f, 0.5f, Colors.White),
+                /* White rectangles */
+
+                /* Black rectangles */
+                Rectangle.Create(-0.24f, 0.495f, -0.18f, 0.495f, -0.18f, 0.46f, -0.24f, 0.46f, Colors.Black),
+                Rectangle.Create(0.24f, 0.405f, 0.18f, 0.405f, 0.18f, 0.44f, 0.24f, 0.44f, Colors.Black),
+                /* Black rectangles */
+        };
     }
 
     @Override
@@ -92,6 +104,10 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer {
 
         for (Triangle triangle: triangles) {
             triangle.draw();
+        }
+
+        for (Rectangle rectangle: rectangles) {
+            rectangle.draw();
         }
 
         gl.glLoadIdentity();
