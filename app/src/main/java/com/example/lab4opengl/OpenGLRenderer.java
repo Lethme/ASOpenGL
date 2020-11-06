@@ -9,36 +9,12 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 public class OpenGLRenderer implements GLSurfaceView.Renderer {
-    private FloatBuffer vertexBuffer;
-    private float[] vertices;
     private Triangle[] triangles;
-    private final int LightBrownTrianglesCount = 22;
-    private final int DarkBrownTrianglesCount = 20;
-    private final int WhiteTrianglesCount = 2;
-    private final int BlackTrianglesCount = 2;
-
-    public void drawTriangle(Triangle triangle, GL10 gl)
-    {
-        float points[] = new float[] {
-                triangle.getPoints()[0].getX(), triangle.getPoints()[0].getY(),
-                triangle.getPoints()[1].getX(), triangle.getPoints()[1].getY(),
-                triangle.getPoints()[2].getX(), triangle.getPoints()[2].getY()
-        };
-        ByteBuffer byteBuffer = ByteBuffer.allocateDirect(points.length * 4);
-        byteBuffer.order(ByteOrder.nativeOrder());
-        vertexBuffer = byteBuffer.asFloatBuffer();
-        vertexBuffer.put(points);
-        vertexBuffer.position(0);
-
-        gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
-        gl.glVertexPointer(2, GL10.GL_FLOAT, 0, vertexBuffer);
-        gl.glColor4f(triangle.getColor().getR(), triangle.getColor().getG(), triangle.getColor().getB(), triangle.getColor().getA());
-        gl.glDrawArrays(GL10.GL_TRIANGLE_STRIP, 0, 3);
-    }
 
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig eglConfig) {
         //Устанавливаем цвет очистки("заливки") экрана в черный
+        Graphics.createGraphics(gl);
         gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         //Устанавливаем X, Y, Z координаты точек вершин и записываем их в массив vertices
         triangles = new Triangle[]{
@@ -115,7 +91,7 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer {
         gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
 
         for (Triangle triangle: triangles) {
-            drawTriangle(triangle, gl);
+            triangle.draw();
         }
 
         gl.glLoadIdentity();

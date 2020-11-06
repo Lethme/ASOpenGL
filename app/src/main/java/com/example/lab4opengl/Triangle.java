@@ -15,8 +15,9 @@ public class Triangle {
         };
         this.color = color;
     }
-    public FloatPoint[] getPoints() { return this.points; }
+    public FloatPoint getPoint(int pointNumber) { return this.points[pointNumber]; }
     public FloatColor getColor() { return this.color; }
+    public void draw() { Graphics.drawTriangle(this); }
     public static Triangle Create(FloatPoint point1, FloatPoint point2, FloatPoint point3, FloatColor color) {
         return new Triangle(point1, point2, point3, color);
     }
