@@ -13,6 +13,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         glSurfaceView = (GLSurfaceView)findViewById(R.id.glSurfaceView);
-        glSurfaceView.setRenderer(new OpenGLRenderer());
+        glSurfaceView.setRenderer(new OpenGLRenderer(this));
     }
 }

@@ -1,6 +1,11 @@
 package com.example.lab4opengl.Graphics;
 
-import android.graphics.Color;
+import android.graphics.Point;
+import android.os.Build;
+import android.view.Display;
+import android.view.WindowManager;
+
+import com.example.lab4opengl.OpenGLRenderer;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -25,6 +30,18 @@ public class Graphics {
                 backgroundColor.getA()
         );
     }
+    private static Point GetScreenSize() {
+        Point size = new Point();
+        WindowManager w = OpenGLRenderer.WindowHandler.getWindowManager();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
+            w.getDefaultDisplay().getSize(size);
+            return size;
+        } else {
+            Display d = w.getDefaultDisplay();
+            return new Point(d.getWidth(), d.getHeight());
+        }
+    }
     public static void Clear() {
         GL.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
     }
@@ -32,7 +49,15 @@ public class Graphics {
         GL.glLoadIdentity();
     }
     public static void SetViewport(int width, int height) {
-        GL.glViewport(0, 0, width, height);
+        Point screenSize = GetScreenSize();
+        if (screenSize.x < screenSize.y) {
+            GL.glViewport(0, 0, width, height);
+        }
+        else {
+            int viewWidth = (int)(height - ((double)height / (double) width) * height);
+            int X = screenSize.x / 2 - viewWidth / 2;
+            GL.glViewport(X, 0, viewWidth, height);
+        }
     }
     public static void drawTriangle(Triangle triangle) {
         float[] points = new float[] {

@@ -9,6 +9,9 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 public class OpenGLRenderer implements GLSurfaceView.Renderer {
+    public static MainActivity WindowHandler;
+    public OpenGLRenderer(MainActivity windowHandler) { WindowHandler = windowHandler; }
+
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig eglConfig) { Graphics.createGraphics(gl); }
 
