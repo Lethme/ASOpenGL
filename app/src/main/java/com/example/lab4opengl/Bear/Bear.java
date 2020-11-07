@@ -1,9 +1,10 @@
 package com.example.lab4opengl.Bear;
 
-import com.example.lab4opengl.Graphics.Colors;
+import com.example.lab4opengl.Graphics.Figures.Ellipse;
+import com.example.lab4opengl.Graphics.Properties.Colors;
 import com.example.lab4opengl.Graphics.Graphics;
-import com.example.lab4opengl.Graphics.Rectangle;
-import com.example.lab4opengl.Graphics.Triangle;
+import com.example.lab4opengl.Graphics.Figures.Rectangle;
+import com.example.lab4opengl.Graphics.Figures.Triangle;
 
 public class Bear {
     private static Triangle[] triangles = new Triangle[]{
@@ -55,21 +56,23 @@ public class Bear {
             Triangle.Create(0.3f, 0.7f, 0.4f, 0.7f, 0.38f, 0.62f, Colors.DarkBrown),
             /* Dark brown triangles */
     };
-    private static Rectangle[] rectangles = new Rectangle[] {
-            /* White rectangles */
-            Rectangle.Create(-0.25f, 0.4f, -0.05f, 0.4f, -0.05f, 0.5f, -0.25f, 0.5f, Colors.White),
-            Rectangle.Create(0.25f, 0.4f, 0.05f, 0.4f, 0.05f, 0.5f, 0.25f, 0.5f, Colors.White),
-            /* White rectangles */
+    private static Rectangle[] rectangles = new Rectangle[] {  };
+    private static Ellipse[] ellipses = new Ellipse[] {
+            /* GhostWhite ellipses */
+            Ellipse.Create(-0.2f, 0.45f, 0.1f, 0.05f, Colors.GhostWhite),
+            Ellipse.Create(0.2f, 0.45f, 0.1f, 0.05f, Colors.GhostWhite),
+            /* GhostWhite ellipses */
 
-            /* Black rectangles */
-            Rectangle.Create(-0.24f, 0.495f, -0.18f, 0.495f, -0.18f, 0.46f, -0.24f, 0.46f, Colors.Black),
-            Rectangle.Create(0.24f, 0.405f, 0.18f, 0.405f, 0.18f, 0.44f, 0.24f, 0.44f, Colors.Black),
-            /* Black rectangles */
+            /* Black ellipses */
+            Ellipse.Create(-0.22f, 0.47f, 0.05f, 0.025f, Colors.Black),
+            Ellipse.Create(0.22f, 0.43f, 0.05f, 0.025f, Colors.Black),
+            /* Black ellipses */
     };
     public static void Draw() {
         Graphics.Clear();
         for (Triangle triangle: triangles) { triangle.draw(); }
         for (Rectangle rectangle: rectangles) { rectangle.draw(); }
+        for (Ellipse ellipse: ellipses) { ellipse.draw(); }
         Graphics.LoadIdentity();
     }
 }
