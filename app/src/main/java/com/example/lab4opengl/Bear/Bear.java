@@ -54,16 +54,6 @@ public class Bear {
             Triangle.Create(-0.3f, 0.7f, -0.4f, 0.7f, -0.38f, 0.62f, Colors.DarkBrown),
             Triangle.Create(0.3f, 0.7f, 0.4f, 0.7f, 0.38f, 0.62f, Colors.DarkBrown),
             /* Dark brown triangles */
-
-            /* White triangles */
-            Triangle.Create(-0.15f, 0.5f, -0.25f, 0.4f, -0.05f, 0.4f, Colors.White),
-            Triangle.Create(0.15f, 0.5f, 0.25f, 0.4f, 0.05f, 0.4f, Colors.White),
-            /* White triangles */
-
-            /* Black triangles */
-            Triangle.Create(-0.15f, 0.5f, -0.18f, 0.47f, -0.12f, 0.47f, Colors.Black),
-            Triangle.Create(0.22f, 0.44f, 0.25f, 0.4f, 0.18f, 0.4f, Colors.Black),
-            /* Black triangles */
     };
     private static Rectangle[] rectangles = new Rectangle[] {
             /* White rectangles */
