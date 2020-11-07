@@ -1,3 +1,7 @@
+/* You can find all the colors here:
+ * http://www.flounder.com/csharp_color_table.htm
+ */
+
 package com.example.lab4opengl.Graphics.Properties;
 
 public class Colors {
@@ -19,7 +23,7 @@ public class Colors {
     public static FloatColor Chocolate = FloatColor.Create(210,105,30);
     public static FloatColor Coral = FloatColor.Create(255,127,80);
     public static FloatColor CornflowerBlue = FloatColor.Create(100,149,237);
-    public static FloatColor Cornsilk = FloatColor.Create(255,248,220);
+    public static FloatColor CornSilk = FloatColor.Create(255,248,220);
     public static FloatColor Crimson = FloatColor.Create(220,20,60);
     public static FloatColor Cyan = FloatColor.Create(0,255,255);
     public static FloatColor DarkBlue = FloatColor.Create(0,0,139);

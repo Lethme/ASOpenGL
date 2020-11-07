@@ -149,15 +149,19 @@ public class Graphics {
     }
     public static void drawEllipse(Ellipse ellipse) {
         int segments = 360;
-        float[] points = new float[segments * 2];
+        float[] points = new float[segments * 2 + 2];
 
         int count = 0;
-        for (float i = 0; i < 360.0f; i += (360.0f/segments)) {
+
+        points[count++] = ellipse.getCenter().getX();
+        points[count++] = ellipse.getCenter().getY();
+
+        for (float i = ellipse.getFirstAngle(); i < ellipse.getSecondAngle(); i += (ellipse.getAngleSum()/segments)) {
             points[count++] = (float)(ellipse.getCenter().getX() + Math.cos(Math.PI/180.0f * i) * ellipse.getWidth());
             points[count++] = (float)(ellipse.getCenter().getY() + Math.sin(Math.PI/180.0f * i) * ellipse.getHeight());
         }
 
-        for (int i = 0; i < points.length - 2; i += 2) {
+        for (int i = 2; i < points.length - 2; i += 2) {
             Graphics.Triangle(
                     ellipse.getCenter().getX(),
                     ellipse.getCenter().getY(),
@@ -169,15 +173,17 @@ public class Graphics {
             );
         }
 
-        Graphics.Triangle(
-                ellipse.getCenter().getX(),
-                ellipse.getCenter().getY(),
-                points[0],
-                points[1],
-                points[points.length - 2],
-                points[points.length - 1],
-                ellipse.getFillColor()
-        );
+        if (ellipse.getAngleSum() == 360.0f) {
+            Graphics.Triangle(
+                    ellipse.getCenter().getX(),
+                    ellipse.getCenter().getY(),
+                    points[2],
+                    points[3],
+                    points[points.length - 2],
+                    points[points.length - 1],
+                    ellipse.getFillColor()
+            );
+        }
 
         if (ellipse.borderColorStated()) {
             ByteBuffer byteBuffer = ByteBuffer.allocateDirect(points.length * 4);
@@ -189,19 +195,34 @@ public class Graphics {
             GL.glVertexPointer(2, GL.GL_FLOAT, 0, vertexBuffer);
             GL.glEnableClientState(GL.GL_VERTEX_ARRAY);
             GL.glColor4f(ellipse.getBorderColor().getR(), ellipse.getBorderColor().getG(), ellipse.getBorderColor().getB(), ellipse.getBorderColor().getA());
-            GL.glDrawArrays(GL.GL_LINE_LOOP, 0, segments);
+            if (ellipse.getAngleSum() == 360.0f)
+                GL.glDrawArrays(GL.GL_LINE_LOOP, 1, segments);
+            else
+                GL.glDrawArrays(GL.GL_LINE_LOOP, 0, segments);
         }
     }
     public static void Ellipse(float centerX, float centerY, float width, float height, FloatColor fillColor) {
         drawEllipse(Ellipse.Create(centerX, centerY, width, height, fillColor));
     }
+    public static void Ellipse(float centerX, float centerY, float width, float height, float firstAngle, float secondAngle, FloatColor fillColor) {
+        drawEllipse(Ellipse.Create(centerX, centerY, width, height, firstAngle, secondAngle, fillColor));
+    }
     public static void Ellipse(float centerX, float centerY, float width, float height, FloatColor fillColor, FloatColor borderColor) {
         drawEllipse(Ellipse.Create(centerX, centerY, width, height, fillColor, borderColor));
+    }
+    public static void Ellipse(float centerX, float centerY, float width, float height, float firstAngle, float secondAngle, FloatColor fillColor, FloatColor borderColor) {
+        drawEllipse(Ellipse.Create(centerX, centerY, width, height, firstAngle, secondAngle, fillColor, borderColor));
     }
     public static void Ellipse(FloatPoint center, float width, float height, FloatColor fillColor) {
         drawEllipse(Ellipse.Create(center, width, height, fillColor));
     }
+    public static void Ellipse(FloatPoint center, float width, float height, float firstAngle, float secondAngle, FloatColor fillColor) {
+        drawEllipse(Ellipse.Create(center, width, height, firstAngle, secondAngle, fillColor));
+    }
     public static void Ellipse(FloatPoint center, float width, float height, FloatColor fillColor, FloatColor borderColor) {
         drawEllipse(Ellipse.Create(center, width, height, fillColor, borderColor));
+    }
+    public static void Ellipse(FloatPoint center, float width, float height, float firstAngle, float secondAngle, FloatColor fillColor, FloatColor borderColor) {
+        drawEllipse(Ellipse.Create(center, width, height, firstAngle, secondAngle, fillColor, borderColor));
     }
 }
