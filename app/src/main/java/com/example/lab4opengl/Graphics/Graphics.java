@@ -61,7 +61,8 @@ public class Graphics {
             GL.glViewport(0, 0, width, height);
         }
         else {
-            int viewWidth = (int)(height - ((double)height / (double) width) * height);
+            //int viewWidth = (int)(height - ((double)height / (double) width) * height);
+            int viewWidth = (int)(height * (((double)height + 250) / (double)width));
             int X = screenSize.x / 2 - viewWidth / 2;
             GL.glViewport(X, 0, viewWidth, height);
         }
