@@ -1,6 +1,5 @@
 package com.example.lab4opengl.Graphics;
 
-import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Build;
 import android.view.Display;

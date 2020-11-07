@@ -3,11 +3,7 @@ package com.example.lab4opengl;
 import android.opengl.GLSurfaceView;
 
 import com.example.lab4opengl.Bear.Bear;
-import com.example.lab4opengl.Graphics.Figures.Ellipse;
 import com.example.lab4opengl.Graphics.Graphics;
-import com.example.lab4opengl.Graphics.Properties.Colors;
-import com.example.lab4opengl.Graphics.Properties.FloatColor;
-import com.example.lab4opengl.Graphics.Properties.FloatPoint;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
