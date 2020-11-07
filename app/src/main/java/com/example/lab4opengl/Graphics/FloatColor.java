@@ -22,6 +22,6 @@ public class FloatColor {
         return new FloatColor(r, g, b, a);
     }
     public static FloatColor Create(int r, int g, int b, float a) {
-        return new FloatColor((float)r / 255, (float)g / 255, (float)b / 255, a);
+        return new FloatColor(r, g, b, a);
     }
 }

@@ -21,8 +21,6 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer {
     @Override
     public void onDrawFrame(GL10 gl)
     {
-        Graphics.Clear();
         Bear.Draw();
-        Graphics.LoadIdentity();
     }
 }

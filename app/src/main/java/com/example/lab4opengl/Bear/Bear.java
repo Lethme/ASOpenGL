@@ -1,6 +1,7 @@
 package com.example.lab4opengl.Bear;
 
 import com.example.lab4opengl.Graphics.Colors;
+import com.example.lab4opengl.Graphics.Graphics;
 import com.example.lab4opengl.Graphics.Rectangle;
 import com.example.lab4opengl.Graphics.Triangle;
 
@@ -76,7 +77,9 @@ public class Bear {
             /* Black rectangles */
     };
     public static void Draw() {
+        Graphics.Clear();
         for (Triangle triangle: triangles) { triangle.draw(); }
         for (Rectangle rectangle: rectangles) { rectangle.draw(); }
+        Graphics.LoadIdentity();
     }
 }
