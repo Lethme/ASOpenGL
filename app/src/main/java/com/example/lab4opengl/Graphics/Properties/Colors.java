@@ -23,7 +23,7 @@ public class Colors {
     public static FloatColor Crimson = FloatColor.Create(220,20,60);
     public static FloatColor Cyan = FloatColor.Create(0,255,255);
     public static FloatColor DarkBlue = FloatColor.Create(0,0,139);
-    public static FloatColor DarkBrown = FloatColor.Create(0.2f, 0.15f, 0.12f);
+    public static FloatColor DarkBrown = FloatColor.Create(51, 38, 31);
     public static FloatColor DarkCyan = FloatColor.Create(0,139,139);
     public static FloatColor DarkGoldenrod = FloatColor.Create(184,134,11);
     public static FloatColor DarkGray = FloatColor.Create(169,169,169);
@@ -66,7 +66,7 @@ public class Colors {
     public static FloatColor LawnGreen = FloatColor.Create(124,252,0);
     public static FloatColor LemonChiffon = FloatColor.Create(255,250,205);
     public static FloatColor LightBlue = FloatColor.Create(173,216,230);
-    public static FloatColor LightBrown = FloatColor.Create(0.3f, 0.22f, 0.16f);
+    public static FloatColor LightBrown = FloatColor.Create(77, 56, 41);
     public static FloatColor LightCoral = FloatColor.Create(240,128,128);
     public static FloatColor LightCyan = FloatColor.Create(224,255,255);
     public static FloatColor LightGoldenrodYellow = FloatColor.Create(250,250,210);

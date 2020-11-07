@@ -67,6 +67,10 @@ public class Bear {
             Ellipse.Create(-0.22f, 0.47f, 0.05f, 0.025f, Colors.Black),
             Ellipse.Create(0.22f, 0.43f, 0.05f, 0.025f, Colors.Black),
             /* Black ellipses */
+
+            /* Dark brown ellipses */
+            Ellipse.Create(0.0f, 0.15f, 0.05f, 0.025f, Colors.DarkBrown),
+            /* Dark brown ellipses */
     };
     public static void Draw() {
         Graphics.Clear();

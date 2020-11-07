@@ -4,6 +4,7 @@ import android.opengl.GLSurfaceView;
 
 import com.example.lab4opengl.Bear.Bear;
 import com.example.lab4opengl.Graphics.Graphics;
+import com.example.lab4opengl.Graphics.Properties.Colors;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -13,10 +14,17 @@ public class OpenGLRenderer implements GLSurfaceView.Renderer {
     public OpenGLRenderer(MainActivity windowHandler) { WindowHandler = windowHandler; }
 
     @Override
-    public void onSurfaceCreated(GL10 gl, EGLConfig eglConfig) { Graphics.createGraphics(gl); }
+    public void onSurfaceCreated(GL10 gl, EGLConfig eglConfig)
+    {
+        Graphics.createGraphics(gl);
+        Graphics.setBackgroundColor(Colors.GhostWhite);
+    }
 
     @Override
-    public void onSurfaceChanged(GL10 gl, int width, int height) { Graphics.SetViewport(width, height); }
+    public void onSurfaceChanged(GL10 gl, int width, int height)
+    {
+        Graphics.SetViewport(width, height);
+    }
 
     @Override
     public void onDrawFrame(GL10 gl)
