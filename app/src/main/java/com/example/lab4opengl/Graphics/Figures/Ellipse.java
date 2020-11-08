@@ -109,7 +109,8 @@ public class Ellipse implements Figure {
     public float getSecondAngle() { return this.secondAngle; }
     public float getAngleSum() { return this.secondAngle - this.firstAngle; }
 
-    public void draw() { Graphics.drawEllipse(this); }
+
+    @Override public void draw() { Graphics.drawEllipse(this); }
     public boolean borderColorStated() { return !fillColor.Equals(borderColor); }
 
     public static Ellipse Create(FloatPoint center, float width, float height, FloatColor fillColor) {

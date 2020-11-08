@@ -1,13 +1,14 @@
 package com.example.lab4opengl.Graphics;
 
-import android.graphics.Point;
 import android.os.Build;
 import android.view.Display;
 import android.view.WindowManager;
 
 import com.example.lab4opengl.Graphics.Figures.Ellipse;
+import com.example.lab4opengl.Graphics.Figures.Line;
 import com.example.lab4opengl.Graphics.Figures.Rectangle;
 import com.example.lab4opengl.Graphics.Figures.Triangle;
+import com.example.lab4opengl.Graphics.Figures.Point;
 import com.example.lab4opengl.Graphics.Properties.Colors;
 import com.example.lab4opengl.Graphics.Properties.FloatColor;
 import com.example.lab4opengl.Graphics.Properties.FloatPoint;
@@ -23,9 +24,15 @@ public class Graphics {
     private static GL10 GL;
     private static FloatBuffer vertexBuffer;
     private static FloatColor backgroundColor = Colors.Black;
+    private static float defaultLineWidth = 3.0f;
+    private static float defaultPointSize = 1.5f;
     public static void createGraphics(GL10 gl) {
         GL = gl;
         setBackgroundColor();
+        setDefaultLineWidth();
+    }
+    private static void setDefaultLineWidth() {
+        GL.glLineWidth(3.0f);
     }
     public static void setBackgroundColor(FloatColor color) { backgroundColor = color; setBackgroundColor(); }
     private static void setBackgroundColor() {
@@ -37,8 +44,8 @@ public class Graphics {
         );
         Graphics.Clear();
     }
-    private static Point GetScreenSize() {
-        Point size = new Point();
+    private static android.graphics.Point GetScreenSize() {
+        android.graphics.Point size = new android.graphics.Point();
         WindowManager w = OpenGLRenderer.WindowHandler.getWindowManager();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
@@ -46,9 +53,11 @@ public class Graphics {
             return size;
         } else {
             Display d = w.getDefaultDisplay();
-            return new Point(d.getWidth(), d.getHeight());
+            return new android.graphics.Point(d.getWidth(), d.getHeight());
         }
     }
+    public static float getDefaultLineWidth() { return defaultLineWidth; }
+    public static float getDefaultPointSize() { return defaultPointSize; }
     public static void Clear() {
         GL.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
     }
@@ -56,7 +65,7 @@ public class Graphics {
         GL.glLoadIdentity();
     }
     public static void SetViewport(int width, int height) {
-        Point screenSize = GetScreenSize();
+        android.graphics.Point screenSize = GetScreenSize();
         if (screenSize.x < screenSize.y) {
             GL.glViewport(0, 0, width, height);
         }
@@ -66,6 +75,84 @@ public class Graphics {
             int X = screenSize.x / 2 - viewWidth / 2;
             GL.glViewport(X, 0, viewWidth, height);
         }
+    }
+    public static void drawPoint(Point point) {
+        float[] points = new float[] {
+                point.getPoint().getX(), point.getPoint().getY()
+        };
+
+        drawEllipse(Ellipse.Create(
+                point.getPoint(),
+                (point.getPointSize() / 100),
+                (point.getPointSize() / 100) / 2,
+                point.getPointColor()
+        ));
+    }
+    public static void Point(FloatPoint point) {
+        drawPoint(Point.Create(point));
+    }
+    public static void Point(FloatPoint point, float pointSize) {
+        drawPoint(Point.Create(point, pointSize));
+    }
+    public static void Point(FloatPoint point, FloatColor pointColor) {
+        drawPoint(Point.Create(point, pointColor));
+    }
+    public static void Point(FloatPoint point, float pointSize, FloatColor pointColor) {
+        drawPoint(Point.Create(point, pointSize, pointColor));
+    }
+    public static void Point(float x, float y) {
+        drawPoint(Point.Create(x, y));
+    }
+    public static void Point(float x, float y, float pointSize) {
+        drawPoint(Point.Create(x, y, pointSize));
+    }
+    public static void Point(float x, float y, FloatColor pointColor) {
+        drawPoint(Point.Create(x, y, pointColor));
+    }
+    public static void Point(float x, float y, float pointSize, FloatColor pointColor) {
+        drawPoint(Point.Create(x, y, pointSize, pointColor));
+    }
+    public static void drawLine(Line line) {
+        float[] points = new float[] {
+                line.getFirstPoint().getX(), line.getFirstPoint().getY(),
+                line.getSecondPoint().getX(), line.getSecondPoint().getY()
+        };
+        ByteBuffer byteBuffer = ByteBuffer.allocateDirect(points.length * 4);
+        byteBuffer.order(ByteOrder.nativeOrder());
+        vertexBuffer = byteBuffer.asFloatBuffer();
+        vertexBuffer.put(points);
+        vertexBuffer.position(0);
+
+        GL.glEnableClientState(GL10.GL_VERTEX_ARRAY);
+        GL.glVertexPointer(2, GL10.GL_FLOAT, 0, vertexBuffer);
+        GL.glColor4f(line.getLineColor().getR(), line.getLineColor().getG(), line.getLineColor().getB(), line.getLineColor().getA());
+        GL.glLineWidth(line.getLineWidth());
+        GL.glDrawArrays(GL10.GL_LINES, 0, 2);
+        setDefaultLineWidth();
+    }
+    public static void Line(FloatPoint firstPoint, FloatPoint secondPoint) {
+        drawLine(Line.Create(firstPoint, secondPoint));
+    }
+    public static void Line(FloatPoint firstPoint, FloatPoint secondPoint, FloatColor lineColor) {
+        drawLine(Line.Create(firstPoint, secondPoint, lineColor));
+    }
+    public static void Line(FloatPoint firstPoint, FloatPoint secondPoint, float lineWidth) {
+        drawLine(Line.Create(firstPoint, secondPoint, lineWidth));
+    }
+    public static void Line(FloatPoint firstPoint, FloatPoint secondPoint, float lineWidth, FloatColor lineColor) {
+        drawLine(Line.Create(firstPoint, secondPoint, lineWidth, lineColor));
+    }
+    public static void Line(float x1, float y1, float x2, float y2) {
+        drawLine(Line.Create(x1, y1, x2, y2));
+    }
+    public static void Line(float x1, float y1, float x2, float y2, FloatColor lineColor) {
+        drawLine(Line.Create(x1, y1, x2, y2, lineColor));
+    }
+    public static void Line(float x1, float y1, float x2, float y2, float lineWidth) {
+        drawLine(Line.Create(x1, y1, x2, y2, lineWidth));
+    }
+    public static void Line(float x1, float y1, float x2, float y2, float lineWidth, FloatColor lineColor) {
+        drawLine(Line.Create(x1, y1, x2, y2, lineWidth, lineColor));
     }
     public static void drawTriangle(Triangle triangle) {
         float[] points = new float[] {

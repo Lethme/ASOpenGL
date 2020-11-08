@@ -41,7 +41,7 @@ public class Triangle implements Figure {
     public FloatColor getFillColor() { return this.fillColor; }
     public FloatColor getBorderColor() { return this.borderColor; }
 
-    public void draw() { Graphics.drawTriangle(this); }
+    @Override public void draw() { Graphics.drawTriangle(this); }
     public boolean borderColorStated() { return !fillColor.Equals(borderColor); }
 
     public static Triangle Create(FloatPoint point1, FloatPoint point2, FloatPoint point3, FloatColor fillColor) {

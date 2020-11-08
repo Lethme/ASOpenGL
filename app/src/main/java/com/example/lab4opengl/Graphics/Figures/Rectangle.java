@@ -43,7 +43,7 @@ public class Rectangle implements Figure {
     public FloatColor getFillColor() { return this.fillColor; }
     public FloatColor getBorderColor() { return this.borderColor; }
 
-    public void draw() { Graphics.drawRectangle(this); }
+    @Override public void draw() { Graphics.drawRectangle(this); }
     public boolean borderColorStated() { return !fillColor.Equals(borderColor); }
 
     public static Rectangle Create(FloatPoint point1, FloatPoint point2, FloatPoint point3, FloatPoint point4, FloatColor fillColor) {
