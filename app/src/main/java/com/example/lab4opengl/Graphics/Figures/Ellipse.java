@@ -4,7 +4,7 @@ import com.example.lab4opengl.Graphics.Graphics;
 import com.example.lab4opengl.Graphics.Properties.FloatColor;
 import com.example.lab4opengl.Graphics.Properties.FloatPoint;
 
-public class Ellipse {
+public class Ellipse implements Figure {
     private FloatPoint center;
     private float width, height;
     private FloatColor fillColor, borderColor;

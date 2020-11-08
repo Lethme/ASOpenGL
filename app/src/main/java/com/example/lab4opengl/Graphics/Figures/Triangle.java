@@ -4,7 +4,7 @@ import com.example.lab4opengl.Graphics.Properties.FloatColor;
 import com.example.lab4opengl.Graphics.Properties.FloatPoint;
 import com.example.lab4opengl.Graphics.Graphics;
 
-public class Triangle {
+public class Triangle implements Figure {
     private FloatPoint[] points;
     private FloatColor fillColor, borderColor;
 
