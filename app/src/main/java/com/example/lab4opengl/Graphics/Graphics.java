@@ -77,10 +77,6 @@ public class Graphics {
         }
     }
     public static void drawPoint(Point point) {
-        float[] points = new float[] {
-                point.getPoint().getX(), point.getPoint().getY()
-        };
-
         drawEllipse(Ellipse.Create(
                 point.getPoint(),
                 (point.getPointSize() / 100),
