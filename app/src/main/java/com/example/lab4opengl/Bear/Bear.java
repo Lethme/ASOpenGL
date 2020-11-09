@@ -1,6 +1,7 @@
 package com.example.lab4opengl.Bear;
 
 import com.example.lab4opengl.Graphics.Figures.Ellipse;
+import com.example.lab4opengl.Graphics.Figures.Line;
 import com.example.lab4opengl.Graphics.Pictures.Picture;
 import com.example.lab4opengl.Graphics.Properties.Colors;
 import com.example.lab4opengl.Graphics.Figures.Triangle;
@@ -70,8 +71,13 @@ public class Bear {
             /* Dark brown ellipses */
 
             /* Dark red ellipses */
-            Ellipse.Create(0.0f, 0.14f, 0.025f, 0.015f, -180.0f, 0.0f, Colors.DarkRed)
+            Ellipse.Create(0.0f, 0.14f, 0.025f, 0.015f, -180.0f, 0.0f, Colors.DarkRed),
             /* Dark red ellipses */
+
+            /* Dark brown lines */
+            Line.Create(-0.05f, 0.52f, -0.3f, 0.55f, 18.0f, Colors.DarkBrown),
+            Line.Create(0.05f, 0.52f, 0.3f, 0.55f, 18.0f, Colors.DarkBrown)
+            /* Dark brown lines */
     );
     public static void Draw() {
         Bear.Draw();

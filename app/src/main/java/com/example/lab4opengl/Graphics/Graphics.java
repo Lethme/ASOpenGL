@@ -1,5 +1,6 @@
 package com.example.lab4opengl.Graphics;
 
+import android.content.res.Configuration;
 import android.os.Build;
 import android.view.Display;
 import android.view.WindowManager;
@@ -24,7 +25,6 @@ public class Graphics {
     private static FloatBuffer vertexBuffer;
     private static FloatColor backgroundColor = Colors.Black;
     private static float defaultLineWidth = 3.0f;
-    private static float defaultPointSize = 1.5f;
     public static void createGraphics(GL10 gl) {
         GL = gl;
         setBackgroundColor();
@@ -43,6 +43,9 @@ public class Graphics {
         );
         Graphics.Clear();
     }
+    private static int GetOrientationState() {
+        return OpenGLRenderer.WindowHandler.getResources().getConfiguration().orientation;
+    }
     private static android.graphics.Point GetScreenSize() {
         android.graphics.Point size = new android.graphics.Point();
         WindowManager w = OpenGLRenderer.WindowHandler.getWindowManager();
@@ -56,7 +59,6 @@ public class Graphics {
         }
     }
     public static float getDefaultLineWidth() { return defaultLineWidth; }
-    public static float getDefaultPointSize() { return defaultPointSize; }
     public static void Clear() {
         GL.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
     }
@@ -65,12 +67,12 @@ public class Graphics {
     }
     public static void SetViewport(int width, int height) {
         android.graphics.Point screenSize = GetScreenSize();
-        if (screenSize.x < screenSize.y) {
+        if (GetOrientationState() == Configuration.ORIENTATION_PORTRAIT) {
             GL.glViewport(0, 0, width, height);
         }
         else {
             //int viewWidth = (int)(height - ((double)height / (double) width) * height);
-            int viewWidth = (int)(height * (((double)height + 250) / (double)width));
+            int viewWidth = (int)(height * (((double)height + (double) height / 3) / (double)width));
             int X = screenSize.x / 2 - viewWidth / 2;
             GL.glViewport(X, 0, viewWidth, height);
         }
