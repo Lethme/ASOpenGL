@@ -8,7 +8,6 @@ import com.example.lab4opengl.Graphics.Figures.Ellipse;
 import com.example.lab4opengl.Graphics.Figures.Line;
 import com.example.lab4opengl.Graphics.Figures.Rectangle;
 import com.example.lab4opengl.Graphics.Figures.Triangle;
-import com.example.lab4opengl.Graphics.Figures.Point;
 import com.example.lab4opengl.Graphics.Properties.Colors;
 import com.example.lab4opengl.Graphics.Properties.FloatColor;
 import com.example.lab4opengl.Graphics.Properties.FloatPoint;
@@ -75,38 +74,6 @@ public class Graphics {
             int X = screenSize.x / 2 - viewWidth / 2;
             GL.glViewport(X, 0, viewWidth, height);
         }
-    }
-    public static void drawPoint(Point point) {
-        drawEllipse(Ellipse.Create(
-                point.getPoint(),
-                (point.getPointSize() / 100),
-                (point.getPointSize() / 100) / 2,
-                point.getPointColor()
-        ));
-    }
-    public static void Point(FloatPoint point) {
-        drawPoint(Point.Create(point));
-    }
-    public static void Point(FloatPoint point, float pointSize) {
-        drawPoint(Point.Create(point, pointSize));
-    }
-    public static void Point(FloatPoint point, FloatColor pointColor) {
-        drawPoint(Point.Create(point, pointColor));
-    }
-    public static void Point(FloatPoint point, float pointSize, FloatColor pointColor) {
-        drawPoint(Point.Create(point, pointSize, pointColor));
-    }
-    public static void Point(float x, float y) {
-        drawPoint(Point.Create(x, y));
-    }
-    public static void Point(float x, float y, float pointSize) {
-        drawPoint(Point.Create(x, y, pointSize));
-    }
-    public static void Point(float x, float y, FloatColor pointColor) {
-        drawPoint(Point.Create(x, y, pointColor));
-    }
-    public static void Point(float x, float y, float pointSize, FloatColor pointColor) {
-        drawPoint(Point.Create(x, y, pointSize, pointColor));
     }
     public static void drawLine(Line line) {
         float[] points = new float[] {
