@@ -1,11 +1,13 @@
 package com.example.lab4opengl.Graphics.Pictures;
 
 import com.example.lab4opengl.Graphics.Figures.Figure;
+import com.example.lab4opengl.Graphics.Figures.Triangle;
 import com.example.lab4opengl.Graphics.Graphics;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class Picture {
+public class Picture implements Pictures {
     protected ArrayList<Figure> figures;
 
     public Picture() {
@@ -20,6 +22,16 @@ public class Picture {
         for (Figure figure : figures) {
             this.figures.add(figure);
         }
+    }
+
+    public <T extends Figure> ArrayList<T> getFigures() {
+        ArrayList<T> list = new ArrayList<T>();
+        for (Figure figure : figures) {
+            if (figure.getClass() == Triangle.class) {
+                list.add((T)figure);
+            }
+        }
+        return list;
     }
 
     public void Draw() {

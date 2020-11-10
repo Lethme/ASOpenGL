@@ -1,10 +1,14 @@
 package com.example.lab4opengl.Bear;
 
 import com.example.lab4opengl.Graphics.Figures.Ellipse;
+import com.example.lab4opengl.Graphics.Figures.Figure;
 import com.example.lab4opengl.Graphics.Figures.Line;
 import com.example.lab4opengl.Graphics.Pictures.Picture;
+import com.example.lab4opengl.Graphics.Pictures.Pictures;
 import com.example.lab4opengl.Graphics.Properties.Colors;
 import com.example.lab4opengl.Graphics.Figures.Triangle;
+
+import java.util.ArrayList;
 
 public class Bear {
     private static Picture Bear = Picture.Create(
